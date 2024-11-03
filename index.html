@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário de Identidade Visual</title>
+    <link rel="shortcut icon" href="assets/favicon.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+    <style>
+        
+::-webkit-scrollbar {
+    width: 10px;
+
+    /* largura da barra de rolagem */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0A0E12; /* cor de fundo da barra de rolagem */
+  }  ::-webkit-scrollbar-thumb {
+    background: #17D5ff;  border-radius: 50px;/* cor do indicador da barra de rolagem */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #19dfff; /* cor do indicador da barra de rolagem ao passar o mouse */
+  }
+        /* Reseta o estilo padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Centraliza o conteúdo e define uma largura máxima */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        form {
+    margin-top: 70px;
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 70px;
+    top: 5%;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.26); /* Fundo branco com transparência */
+    backdrop-filter: blur(10px); /* Efeito de desfoque */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1, h2 {
+    margin-bottom: 16px;
+    margin-top: 16px;
+    color: #0b406f;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+        p {
+            margin-bottom: 24px;
+            color: #666;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: 100;
+            text-align: left;
+            color: #6c6a6a;
+        }
+
+        input[type="text"], input[type="file"],input[type="email"], textarea, input[type="file"], input[type="url"] {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #333;
+}
+input[type="file"] {
+            width: 100%;
+            justify-content: center;
+            margin-top: 8px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            font-size: 16px;
+            color: #333;
+        }
+        /* Estilo para o campo de entrada de arquivo com ícone */
+        .file-input {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        /* O input de arquivo é posicionado em cima e fica invisível */
+        .file-input input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0; /* Torna invisível */
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input .file-label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 40px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-input .file-label:hover {
+            border-color: #007BFF;
+            cursor: pointer;
+        }
+
+        .file-input .file-icon {
+            margin-right: 10px;
+            font-size: 18px; /* Ajuste o tamanho conforme necessário */
+        }
+
+        .file-input .custom-button {
+    
+    color: white;
+    border: none;
+    margin-top: -3px;
+    border-radius: 20px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+        .file-input .custom-button:hover {
+            background-color: #0056b3; /* Cor ao passar o mouse */
+        }
+        input[type="color"] {
+            width: 10%;
+            margin-top: 8px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+        }
+        input[type="color"]:hover{
+            background-color: #ccc;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+     
+
+        /* Estilo do retângulo para as cores */
+        .color-rectangle {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 50px;
+            border: 1px solid #ccc;
+            border-radius: 40px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .color-segment {
+            flex: 1;
+            height: 100%;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Estilo dos links e palavras-chave adicionadas */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            margin: 5px;
+            border: 1px solid #007bff;
+            border-radius: 16px;
+            background-color: #e9f5ff;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        .tag .remove-tag {
+            margin-left: 8px;
+            cursor: pointer;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        button {
+    width: 40%;
+    padding: 12px;
+    margin-top: 24px;
+    background-color: #329ace;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+section {
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+        button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        form img{
+            margin-bottom: 0px;
+            height: 150px;
+        }
+        #targetAudienceContainer{
+            margin-top: 40px;
+        }
+       
+         .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Coloca o vídeo atrás do conteúdo */
+                  }
+
+                  @media screen and (max-width: 900px){
+                    form {
+    margin-top: 0px;
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 0px;
+    top: 5%;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.26);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 24px;
+    background-color: #329ace;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+input[type="color"] {
+    width: 40px;
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+}
+                  }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="background-video">
+        <source src="assets/video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos em HTML5.
+    </video>
+
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+        <header>
+            <img src="assets/logo.png" alt="">
+            
+            <h1>Questionário de Identidade Visual</h1>
+          
+            <p>Nos conte um pouco sobre a identidade visual que você deseja criar ou aprimorar. <br> Suas respostas nos ajudarão a entender seu estilo e preferências!</p>
+        </header>
+
+        <!-- Seção 1: Informações Básicas -->
+        <section>
+            <h2>Informações Básicas</h2>
+            <label for="name">Nome Completo:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-mail para contato:</label>
+            <input type="email" id="email" name="email" required>
+        </section>
+
+        <!-- Seção 2: Preferências de Cores -->
+        <section>
+            <h2>Preferências de Cores</h2>
+            <p>Selecione até 5 cores para a sua identidade visual:</p>
+            <input type="color" id="color1" name="color1" value="#000" onchange="addColor(1)">
+            <input type="color" id="color2" name="color2" value="#000" onchange="addColor(2)">
+            <input type="color" id="color3" name="color3" value="#000" onchange="addColor(3)">
+            <input type="color" id="color4" name="color4" value="#000" onchange="addColor(4)">
+            <input type="color" id="color5" name="color5" value="#000" onchange="addColor(5)">
+
+            <div class="color-rectangle" id="color-rectangle">
+                <div class="color-segment" id="segment1"></div>
+                <div class="color-segment" id="segment2"></div>
+                <div class="color-segment" id="segment3"></div>
+                <div class="color-segment" id="segment4"></div>
+                <div class="color-segment" id="segment5"></div>
+            </div>
+        </section>
+
+       
+<!-- Seção 3: Referências Visuais -->
+<!-- Seção 3: Referências Visuais -->
+<section>
+    <h2>Referências Visuais</h2>
+    <label for="photos">Envie documentos ou fotos que inspirem sua identidade visual:</label>
+    <p style="color: #6c6a6a;">Formato permitido: PNG, JPEG e PDF.</p>
+    <div class="file-input">
+        <input type="file" id="photos" name="photos" accept="image/png, image/jpeg, application/pdf" multiple />
+        <label class="file-label" for="photos">
+            <span class="file-icon">📁</span>
+            <span>Escolha arquivos</span>
+            <button type="button" class="custom-button">Selecionar</button>
+        </label>
+    </div>
+    <div id="file-tags-container"></div> <!-- Div para exibir as tags dos arquivos selecionados -->
+</section>
+
+<script>
+    const selectedFiles = []; // Array para armazenar os arquivos selecionados
+
+    document.getElementById('photos').addEventListener('change', function() {
+        const fileTagsContainer = document.getElementById('file-tags-container');
+
+        // Adiciona os novos arquivos ao array e atualiza a exibição
+        Array.from(this.files).forEach(file => {
+            if (!selectedFiles.some(f => f.name === file.name)) { // Verifica se o arquivo já está na lista
+                selectedFiles.push(file);
+                const tag = document.createElement('div');
+                tag.className = 'tag';
+                tag.innerHTML = `${file.name} <span class="remove-tag" onclick="removeFileTag(this)">x</span>`;
+                fileTagsContainer.appendChild(tag);
+            }
+        });
+
+        // Atualiza o texto do botão com o número total de arquivos
+        const fileLabelSpan = document.querySelector('.file-label span');
+        fileLabelSpan.textContent = `${selectedFiles.length} arquivo(s) selecionado(s)`;
+    });
+
+    function removeFileTag(element) {
+        const tag = element.parentNode;
+        const fileName = tag.firstChild.textContent.trim();
+        tag.parentNode.removeChild(tag);
+
+        // Remove o arquivo do array
+        const fileIndex = selectedFiles.findIndex(f => f.name === fileName);
+        if (fileIndex !== -1) {
+            selectedFiles.splice(fileIndex, 1);
+        }
+
+        // Atualiza o texto do botão com o número de arquivos restantes
+        const fileLabelSpan = document.querySelector('.file-label span');
+        fileLabelSpan.textContent = `${selectedFiles.length} arquivo(s) selecionado(s)`;
+    }
+</script>
+
+        <!-- Seção 4: Palavras-chave -->
+        <section>
+            <h2>Palavras-chave</h2>
+            <label for="keyword-input">Adicione palavras-chave que descrevam sua identidade visual (ex.: futurista, clean):</label>
+            <input type="text" id="keyword-input" placeholder="Digite uma palavra e pressione 'Adicionar'">
+            <button type="button" onclick="addKeyword()">Adicionar Palavra-chave</button>
+
+            <div id="keywords-container"></div>
+            <input type="hidden" name="keywords" id="keywords">
+        </section>
+
+        <!-- Seção 8: Público-Alvo -->
+        <section>
+            <h2>Público-Alvo</h2>
+            <label for="targetAudienceInput">Adicione características do público-alvo:</label>
+            <input type="text" id="targetAudienceInput" placeholder="Digite uma característica e pressione 'Adicionar'">
+            <button type="button" onclick="addTargetAudience()">Adicionar Público-Alvo</button>
+
+            <div id="targetAudienceContainer"></div>
+            <input type="hidden" name="targetAudience" id="targetAudience">
+        </section>
+
+     <!-- Seção 6: Links de Referência -->
+     <section>
+        <h2>Links de Referência</h2>
+        <label for="link-input">Adicione links para sites ou referências visuais:</label>
+        <input type="url" id="link-input" placeholder="Digite um link válido e pressione 'Adicionar'">
+        <button type="button" onclick="addLink()">Adicionar Link</button>
+
+        <div id="links-container"></div>
+        <input type="hidden" name="links" id="links">
+    </section>
+
+     
+
+        <!-- Botão de Envio -->
+        <button type="submit" style="background-color: #4caf3fe3;">Enviar Questionário</button>
+        <footer><a href="https://marketinggdigital.com/" style="color: #2281c0;">marketinggdigital.com</a></footer>
+        <footer>© 2024 - Todos os direitos reservados.</footer>
+    </form>
+
+    <script>
+        function addLink() {
+            const input = document.getElementById("link-input").value.trim();
+            if (input) {
+                const tag = document.createElement("div");
+                tag.className = "tag";
+                tag.innerHTML = `${input} <span class="remove-tag" onclick="removeTag(this, '${input}', 'links')">x</span>`;
+                document.getElementById("links-container").appendChild(tag);
+
+                updateInput(input, "links");
+                document.getElementById("link-input").value = "";
+            }
+        }
+
+        function addKeyword() {
+            const input = document.getElementById("keyword-input").value.trim();
+            if (input) {
+                const tag = document.createElement("div");
+                tag.className = "tag";
+                tag.innerHTML = `${input} <span class="remove-tag" onclick="removeTag(this, '${input}', 'keywords')">x</span>`;
+                document.getElementById("keywords-container").appendChild(tag);
+
+                updateInput(input, "keywords");
+                document.getElementById("keyword-input").value = "";
+            }
+        }
+
+        function addTargetAudience() {
+            const input = document.getElementById("targetAudienceInput").value.trim();
+            if (input) {
+                const tag = document.createElement("div");
+                tag.className = "tag";
+                tag.innerHTML = `${input} <span class="remove-tag" onclick="removeTag(this, '${input}', 'targetAudience')">x</span>`;
+                document.getElementById("targetAudienceContainer").appendChild(tag);
+
+                updateInput(input, "targetAudience");
+                document.getElementById("targetAudienceInput").value = "";
+            }
+        }
+
+        function addDesignStyle() {
+            const input = document.getElementById("designStyleInput").value.trim();
+            if (input) {
+                const tag = document.createElement("div");
+                tag.className = "tag";
+                tag.innerHTML = `${input} <span class="remove-tag" onclick="removeTag(this, '${input}', 'designStyle')">x</span>`;
+                document.getElementById("designStyleContainer").appendChild(tag);
+
+                updateInput(input, "designStyle");
+                document.getElementById("designStyleInput").value = "";
+            }
+        }
+
+        function addKeyMessage() {
+            const input = document.getElementById("keyMessagesInput").value.trim();
+            if (input) {
+                const tag = document.createElement("div");
+                tag.className = "tag";
+                tag.innerHTML = `${input} <span class="remove-tag" onclick="removeTag(this, '${input}', 'keyMessages')">x</span>`;
+                document.getElementById("keyMessagesContainer").appendChild(tag);
+
+                updateInput(input, "keyMessages");
+                document.getElementById("keyMessagesInput").value = "";
+            }
+        }
+
+        function updateInput(value, field) {
+            const input = document.getElementById(field);
+            const values = input.value ? input.value.split(",") : [];
+            values.push(value);
+            input.value = values.join(",");
+        }
+
+        function removeTag(element, value, field) {
+            element.parentElement.remove();
+            const input = document.getElementById(field);
+            const values = input.value.split(",").filter(val => val !== value);
+            input.value = values.join(",");
+        }
+
+        function addColor(num) {
+            const color = document.getElementById("color" + num).value;
+            document.getElementById("segment" + num).style.backgroundColor = color;
+        }
+    </script>
+
+</body>
+</html>
